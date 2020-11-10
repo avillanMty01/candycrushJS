@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const width = 8
   const squares = []
   let score = 0
+  const scoreDisplay = document.getElementById('scoreTag')
   const candyColors = [
     'red',
     'yellow',
@@ -92,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (notValid.includes(i)) continue // avoids blank squares at edge of grid
       if (rowOfFour.every(index => squares[index].style.backgroundColor === decideColor && !isBlank)) {
         score += 4
-        console.log('score', score)
+        scoreDisplay.innerHTML = score
         rowOfFour.forEach(index => {
           squares[index].style.backgroundColor = ''
         })
@@ -102,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Row of three
   function checkRowForThree () {
-    for (let i = 0; i < 61; i++) {
+    for (let i = 0; i < 62; i++) {
       let rowOfThree = [i, i + 1, i + 2]
       let decideColor = squares[i].style.backgroundColor
       const isBlank = squares[i].style.backgroundColor === ''
@@ -110,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (notValid.includes(i)) continue // avoids blank squares at edge of grid
       if (rowOfThree.every(index => squares[index].style.backgroundColor === decideColor && !isBlank)) {
         score += 3
-        console.log('score', score)
+        scoreDisplay.innerHTML = score
         rowOfThree.forEach(index => {
           squares[index].style.backgroundColor = ''
         })
@@ -126,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const isBlank = squares[i].style.backgroundColor === ''
       if (columnOfFour.every(index => squares[index].style.backgroundColor === decideColor && !isBlank)) {
         score += 4
-        console.log('score', score)
+        scoreDisplay.innerHTML = score
         columnOfFour.forEach(index => {
           squares[index].style.backgroundColor = ''
         })
@@ -142,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const isBlank = squares[i].style.backgroundColor === ''
       if (columnOfThree.every(index => squares[index].style.backgroundColor === decideColor && !isBlank)) {
         score += 3
-        console.log('score', score)
+        scoreDisplay.innerHTML = score
         columnOfThree.forEach(index => {
           squares[index].style.backgroundColor = ''
         })
@@ -150,8 +151,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function moveDown () {
+    for (let i = 0; i < 55; i++) { // 56 or 63
+      if (squares[i + width].style.backgroundColor === '') {
+        squares[i + width].style.backgroundColor = squares[i].style.backgroundColor
+        squares[i].style.backgroundColor = ''
+      }
+      // fill blank squares
+      const firstRow = [0, 1, 2, 3, 4, 5, 6, 7]
+      const isFirstRow = firstRow.includes(i)
+      if (isFirstRow && (squares[i].style.backgroundColor === '')) {
+        let randomColor = Math.floor(Math.random() * candyColors.length)
+        squares[i].style.backgroundColor = candyColors[randomColor]
+      }
+    }
+  }
   // every 100 miliseconds check if theres a row match of three
   window.setInterval(function () {
+    moveDown()
     checkColumnForFour()
     checkRowForFour()
     checkRowForThree()
