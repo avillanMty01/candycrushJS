@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'url(alt-images/alt-green.png)',
     'url(alt-images/alt-blue.png)'
   ]
-
   /*
   const candyColors = [
     'url(images/red-candy.png)',
@@ -94,6 +93,41 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Checking for matches
+
+  // --- Row of five
+  function checkRowForFive () {
+    for (let i = 0; i < 61; i++) {
+      let rowOfFive = [i, i + 1, i + 2, i + 3, i + 4]
+      let decideColor = squares[i].style.backgroundImage
+      const isBlank = squares[i].style.backgroundImage === ''
+      const notValid = [4, 5, 6, 7, 12, 13, 14, 15, 20, 21, 22, 23, 28, 29, 30, 31, 36, 37, 38, 39, 44, 45, 46, 47, 52, 53, 54, 55]
+      if (notValid.includes(i)) continue // avoids blank squares at edge of grid
+      if (rowOfFive.every(index => squares[index].style.backgroundImage === decideColor && !isBlank)) {
+        score += 5
+        scoreDisplay.innerHTML = score
+        rowOfFive.forEach(index => {
+          squares[index].style.backgroundImage = ''
+        })
+      }
+    }
+  }
+
+  // --- Column of five
+  function checkColumnForFive () {
+    for (let i = 0; i < 32; i++) { // originally Ania had i<47, but it didn't work dor the last column at botom
+      let columnOfFive = [i, i + width, i + width * 2, i + width * 3, i + width * 4]
+      let decideColor = squares[i].style.backgroundImage
+      const isBlank = squares[i].style.backgroundImage === ''
+      if (columnOfFive.every(index => squares[index].style.backgroundImage === decideColor && !isBlank)) {
+        score += 5
+        scoreDisplay.innerHTML = score
+        columnOfFive.forEach(index => {
+          squares[index].style.backgroundImage = ''
+        })
+      }
+    }
+  }
+
   // --- Row of four
   function checkRowForFour () {
     for (let i = 0; i < 61; i++) {
@@ -112,6 +146,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // --- Column of four
+  function checkColumnForFour () {
+    for (let i = 0; i < 40; i++) { // originally Ania had i<47, but it didn't work dor the last column at botom
+      let columnOfFour = [i, i + width, i + width * 2, i + width * 3]
+      let decideColor = squares[i].style.backgroundImage
+      const isBlank = squares[i].style.backgroundImage === ''
+      if (columnOfFour.every(index => squares[index].style.backgroundImage === decideColor && !isBlank)) {
+        score += 4
+        scoreDisplay.innerHTML = score
+        columnOfFour.forEach(index => {
+          squares[index].style.backgroundImage = ''
+        })
+      }
+    }
+  }
+
   // --- Row of three
   function checkRowForThree () {
     for (let i = 0; i < 62; i++) {
@@ -124,22 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
         score += 3
         scoreDisplay.innerHTML = score
         rowOfThree.forEach(index => {
-          squares[index].style.backgroundImage = ''
-        })
-      }
-    }
-  }
-
-  // --- Column of four
-  function checkColumnForFour () {
-    for (let i = 0; i < 40; i++) { // originally Ania had i<47, but it didn't work dor the last column at botom
-      let columnOfFour = [i, i + width, i + width * 2, i + width * 3]
-      let decideColor = squares[i].style.backgroundImage
-      const isBlank = squares[i].style.backgroundImage === ''
-      if (columnOfFour.every(index => squares[index].style.backgroundImage === decideColor && !isBlank)) {
-        score += 4
-        scoreDisplay.innerHTML = score
-        columnOfFour.forEach(index => {
           squares[index].style.backgroundImage = ''
         })
       }
@@ -180,6 +214,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // every 100 miliseconds check if theres a row match of three
   window.setInterval(function () {
     moveDown()
+    checkRowForFive()
+    // checkColumnForFive()
     checkColumnForFour()
     checkRowForFour()
     checkRowForThree()
