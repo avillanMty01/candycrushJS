@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.setInterval(function () {
     moveDown()
     checkRowForFive()
-    // checkColumnForFive()
+    checkColumnForFive()
     checkColumnForFour()
     checkRowForFour()
     checkRowForThree()
