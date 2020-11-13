@@ -7,4 +7,4 @@ Some fixes have been made:
 - first row remained blank when clearing a row
 - bottom right corner remained blank
 - added check row and column of five
-[]
+- added feature: check for invalid moves when no match found
