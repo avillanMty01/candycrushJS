@@ -64,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function dragLeave () {
   }
   function dragDrop () {
-    // console.log(this.id, 'dragdrop')
     colorBeingReplaced = this.style.backgroundImage // we have the color to be replaced
     squareIdBeingReplaced = parseInt(this.id) // id to replace
     this.style.backgroundImage = colorBeingDragged // change the color
@@ -75,8 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // What is a valid move?
     const validMoves = [squareIdBeingDragged - 1, squareIdBeingDragged - width, squareIdBeingDragged + 1, squareIdBeingDragged + width]
     const validMove = validMoves.includes(squareIdBeingReplaced)
-
-    if (squareIdBeingReplaced && validMove) {
+    if ((typeof squareIdBeingReplaced === 'number') && validMove) {
       const scoredRowOfFive = checkRowForFive()
       const scoredColumnOfFive = checkColumnForFive()
       const scoredRowOfFour = checkRowForFour()
