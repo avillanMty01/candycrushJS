@@ -1,15 +1,15 @@
 .grid {
-    height: 560px;
-    min-width: 560px;
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 80px;
-    margin-top: 50px;
     background-color: rgba(109, 127, 151, 0.5);
-    padding:5px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) inset, 0 1px 0 #fff;
     color: #85796b;
+    display: flex;
+    flex-wrap: wrap;
+    height: 560px;
+    margin-left: 80px;
+    margin-top: 50px;
+    min-width: 560px;
+    padding:5px;
 }
 
 .grid div {
@@ -24,8 +24,8 @@ h3 {
 
 h1 {
  font-family: "Montserrat", sans-serif;
- text-transform: uppercase;
  margin-top: -10px;
+ text-transform: uppercase;
 }
 
 .invisible {
@@ -34,24 +34,23 @@ h1 {
 
 body {
   background-image: url("wall2.jpg");
-  max-width: 100vh;
   display: flex;
+  max-width: 100vh;
 }
 
 .score-board {
+  align-items: center;
   background-color: pink;
+  background-image: linear-gradient(#FFB6C1, #FFC0CB);
   border-radius: 10px;
-  margin-top: 200px;
-  margin-left: 200px;
-  margin-bottom: 350px;
-  min-width: 200px;
-
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) inset, 0 1px 0 #fff;
+  color: #85796b;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  margin-bottom: 350px;
+  margin-left: 200px;
+  margin-top: 200px;
+  min-width: 200px;
   text-align: center;
-  background-image: linear-gradient(#FFB6C1, #FFC0CB);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5) inset, 0 1px 0 #fff;
-  color: #85796b;
 }

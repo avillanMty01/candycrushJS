@@ -96,11 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Checking for matches
-
   // --- Row of five
   function checkRowForFive () {
     let scored = false
-    for (let i = 0; i < 61; i++) {
+    for (let i = 0; i < 60; i++) {
       const rowOfFive = [i, i + 1, i + 2, i + 3, i + 4]
       const decideColor = squares[i].style.backgroundImage
       const isBlank = squares[i].style.backgroundImage === ''
@@ -238,7 +237,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   }
-
   // every 100 miliseconds check if there's a row match of three
   window.setInterval(function () {
     moveDown()
