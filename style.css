@@ -33,7 +33,7 @@ h1 {
 }
 
 body {
-  background-image: url("wall1.jpg");
+  background-image: url("wall1.png");
   display: flex;
   max-width: 100vh;
 }
